@@ -1,18 +1,19 @@
 
 class Solution:
     def diameterOfBinaryTree(self, root):
-        self.diameter = 0
+        self.d = 0
 
-        def height(node):
-            if node is None:
+        def recursion(root):
+            if root is None:
                 return 0
 
-            left = height(node.left)
-            right = height(node.right)
+            left = recursion(root.left)
+            right = recursion(root.right)
 
-            self.diameter = max(self.diameter, left + right)
+            self.d = max(self.d, left + right)
 
             return 1 + max(left, right)
 
-        height(root)
-        return self.diameter
+        recursion(root)
+        return self.d
+
